@@ -10,21 +10,22 @@
 #ifndef __ICCC_H__
 # define __ICCC_H__
 
+#include "X11/Xmd.h"
 
 // Property XA_WM_NORMAL_HINTS, type XA_WM_SIZE_HINTS
 
 typedef struct {
-	long flags;       // marks which fields in this structure are defined
-	long _x,_y,_w,_h; // obsolete
-	long min_width, min_height;
-	long max_width, max_height;
-	long inc_width, inc_height;
-	struct {
-		long x;   // numerator
-		long y;   // denominator
-	}    min_aspect, max_aspect;
-	long base_width, base_height;   // added by ICCCM version 1
-	long win_gravity;               // added by ICCCM version 1
+    long flags;       // marks which fields in this structure are defined
+    long _x,_y,_w,_h; // obsolete
+    long min_width, min_height;
+    long max_width, max_height;
+    long inc_width, inc_height;
+    struct {
+        long x;   // numerator
+        long y;   // denominator
+    }    min_aspect, max_aspect;
+    long base_width, base_height;   // added by ICCCM version 1
+    long win_gravity;               // added by ICCCM version 1
 } SizeHints;
 
 // flags argument in size hints
@@ -43,16 +44,16 @@ typedef struct {
 // Property XA_WM_HINTS, type XA_WM_HINTS
 
 typedef struct {
-	long flags;   // marks which fields in this structure are defined
-	long input;   // does this application rely on the window manager to
-	              // get keyboard input?
-	int    initial_state;  // see below
-	Pixmap icon_pixmap;    // pixmap to be used as icon
-	Window icon_window;    // window to be used as icon
-	int    icon_x, icon_y; // initial position of icon
-	Pixmap icon_mask;      // icon mask bitmap
-	XID    window_group;   // id of related window group
-	/* this structure may be extended in the future */
+    long flags;   // marks which fields in this structure are defined
+    long input;   // does this application rely on the window manager to
+                  // get keyboard input?
+    int    initial_state;  // see below
+    Pixmap icon_pixmap;    // pixmap to be used as icon
+    Window icon_window;    // window to be used as icon
+    int    icon_x, icon_y; // initial position of icon
+    Pixmap icon_mask;      // icon mask bitmap
+    XID    window_group;   // id of related window group
+    /* this structure may be extended in the future */
 } WmHints;
 
 // definition for flags of WmHints
@@ -71,4 +72,4 @@ typedef struct {
 #define IconicState    3   // application wants to start as an icon
 
 
-#endif __ICCC_H__
+#endif /* __ICCC_H__ */

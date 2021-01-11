@@ -17,32 +17,32 @@
 
 
 #define XRSC( T, flag ) \
-	p_##T  NextXRSC; \
-	BOOL   flag : 1; \
-	CARD32 Id   :31  \
+    p_##T  NextXRSC; \
+    BOOL   flag : 1; \
+    CARD32 Id   :31  \
 //	;void * DEBUG_tag
 
 
 typedef struct s_XRSC *   p_XRSC;
 
 struct s_XRSC {
-	XRSC( XRSC, flag );
+    XRSC( XRSC, flag );
 };
 
 
 #define struct_XRSCPOOL( s, T, n ) struct s { \
 /*	CARD32 DEBUG_chk;*/  \
-	CARD32 mask_bits;    \
-	p_##T  item[1uL<<n]; \
+    CARD32 mask_bits;    \
+    p_##T  item[1uL<<n]; \
 }
 
 typedef struct_XRSCPOOL( s_XRSCPOOL, XRSC, 0 ) * p_XRSCPOOL;
 
 #define XRSCPOOL( T, name,n ) \
-	union {                        \
-		struct s_XRSCPOOL     xrsc; \
-		struct_XRSCPOOL(,T,n) type; \
-	} name
+    union {                        \
+        struct s_XRSCPOOL     xrsc; \
+        struct_XRSCPOOL(,T,n) type; \
+    } name
 
 
 #define CastXRSC(r)   ((p_XRSC)&r->NextXRSC)
@@ -69,4 +69,4 @@ void _xrsc_pool_init (p_XRSCPOOL , size_t size);
 extern BOOL DBG_XRSC_TypeError;
 
 
-#endif __XRSC_H__
+#endif /* __XRSC_H__ */

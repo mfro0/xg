@@ -1,17 +1,17 @@
 WARN    = -Wall -Wpointer-arith -Wwrite-strings -Wmissing-prototypes -Wshadow \
-          -Werror #-Wcast-qual
+	  -Werror #-Wcast-qual
 CCOPTS  = -D_TRACE -g -O2 -fstrength-reduce #-DNODEBUG
 CCFLAGS = -funsigned-char -fomit-frame-pointer -m68030 \
-          -I. -I../include -I/usr/GEM/include \
-          $(CCOPTS) $(WARN)
+	  -I. -I../include -I/usr/GEM/include \
+	  $(CCOPTS) $(WARN)
 
 #SHELL  = /bin/ash
 #TMPDIR = /ram/tmp
 
-CC  = gcc
-CXX = g++ #-pipe
-LD  = gcc -g
-AR  = ar rs
+CC  = m68k-atari-mint-gcc
+CXX = m68k-atari-minit-g++
+LD  = m68k-atari-mint-gcc -g
+AR  = m68k-atari-mint-ar rs
 
 PRG    = X.app
 OBJDIR = ../obj

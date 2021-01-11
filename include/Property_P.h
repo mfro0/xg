@@ -21,15 +21,15 @@
 
 
 typedef struct s_PROPERTY {
-	XRSC(PROPERTY, unused);
-	Atom       Type;
-	BOOL       ICCC   : 1;
-	CARD8      Format : 7; // 8/16/32 bit
-	size_t     Length :24; // in bytes
-	char       Data[4];
+    XRSC(PROPERTY, unused);
+    Atom       Type;
+    BOOL       ICCC   : 1;
+    CARD8      Format : 7; // 8/16/32 bit
+    size_t     Length :24; // in bytes
+    char       Data[4];
 } PROPERTY;
 
 
 void _Prop_ICCC (p_WINDOW wind, PROPERTY * prop, BOOL changed);
 
-#endif __PROPERTY_P_H__
+#endif /* __PROPERTY_P_H__ */

@@ -25,12 +25,12 @@
 
 
 typedef struct s_ATOM {
-	Atom     Id;
-	p_CLIENT SelOwner;
-	p_WINDOW SelWind;
-	CARD32   SelTime;
-	size_t   Length;
-	char     Name[1];
+    Atom     Id;
+    p_CLIENT SelOwner;
+    p_WINDOW SelWind;
+    CARD32   SelTime;
+    size_t   Length;
+    char     Name[1];
 } ATOM;
 extern CONST ATOM * CONST ATOM_Table[];
 extern CONST CARD32       ATOM_Count;
@@ -51,4 +51,4 @@ Atom    AtomGet  (const char * name, size_t len, BOOL onlyIfExists);
 
 #undef CONST
 
-#endif __ATOM_H__
+#endif /* __ATOM_H__ */

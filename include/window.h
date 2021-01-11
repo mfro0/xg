@@ -22,59 +22,59 @@ typedef struct s_BTNGRAB    * p_BTNGRAB;
 typedef struct s_PROPERTIES * p_PROPERTIES;
 
 typedef struct {
-	CARD32   Mask;
-	p_CLIENT Client;
+    CARD32   Mask;
+    p_CLIENT Client;
 } WINDEVNT;
 
 typedef struct s_WINDOW {
-	XRSC(DRAWABLE, isWind);
-	
-	GRECT  Rect;           // W,H matches fd_w,fd_h
-	CARD16 BorderWidth:16;
-	INT16  Handle     :16;
-	CARD16 Depth;          // matches fd_nplanes
-	
-	BOOL  ClassInOut  : 1;
-	BOOL  Override    : 1;
-	CARD8 BackingStore: 2;
-	CARD8 WinGravity  : 4;
-	CARD8 BitGravity  : 4;
-	BOOL  SaveUnder   : 1;
-	
-	BOOL isMapped     : 1;
-	BOOL hasBorder    : 1;
-	BOOL hasBackGnd   : 1;
-	BOOL hasBackPix   : 1;
-	
-	BOOL GwmParented  : 1;
-	BOOL GwmDecor     : 1;
-	BOOL GwmIcon      : 1;
-	
-	CARD16 nSelections:12;
-	
-	CARD32       BorderPixel;
-	union {
-		CARD32      Pixel;
-		p_PIXMAP    Pixmap;
-	}            Back;
-	
-	CARD32       PropagateMask; // reverted do-not-propagate-mask
-	union {
-		WINDEVNT    Event; // Mask >= 0: use this
-		struct {
-			long       AllMasks;   // in both cases, holds all ORed event masks
-			struct {
-				          CARD16   Length;
-				          WINDEVNT Event[1];
-			} *        p;
-		}           List; // AllMasks must be < 0
-	}            u;
-	p_BTNGRAB    ButtonGrab;
-	p_WINDOW     Parent;
-	p_WINDOW     PrevSibl, NextSibl;
-	p_WINDOW     StackBot, StackTop;
-	p_CURSOR     Cursor;
-	p_PROPERTIES Properties;
+    XRSC(DRAWABLE, isWind);
+
+    GRECT  Rect;           // W,H matches fd_w,fd_h
+    CARD16 BorderWidth:16;
+    INT16  Handle     :16;
+    CARD16 Depth;          // matches fd_nplanes
+
+    BOOL  ClassInOut  : 1;
+    BOOL  Override    : 1;
+    CARD8 BackingStore: 2;
+    CARD8 WinGravity  : 4;
+    CARD8 BitGravity  : 4;
+    BOOL  SaveUnder   : 1;
+
+    BOOL isMapped     : 1;
+    BOOL hasBorder    : 1;
+    BOOL hasBackGnd   : 1;
+    BOOL hasBackPix   : 1;
+
+    BOOL GwmParented  : 1;
+    BOOL GwmDecor     : 1;
+    BOOL GwmIcon      : 1;
+
+    CARD16 nSelections:12;
+
+    CARD32       BorderPixel;
+    union {
+        CARD32      Pixel;
+        p_PIXMAP    Pixmap;
+    }            Back;
+
+    CARD32       PropagateMask; // reverted do-not-propagate-mask
+    union {
+        WINDEVNT    Event; // Mask >= 0: use this
+        struct {
+            long       AllMasks;   // in both cases, holds all ORed event masks
+            struct {
+                          CARD16   Length;
+                          WINDEVNT Event[1];
+            } *        p;
+        }           List; // AllMasks must be < 0
+    }            u;
+    p_BTNGRAB    ButtonGrab;
+    p_WINDOW     Parent;
+    p_WINDOW     PrevSibl, NextSibl;
+    p_WINDOW     StackBot, StackTop;
+    p_CURSOR     Cursor;
+    p_PROPERTIES Properties;
 } WINDOW;
 
 extern WINDOW WIND_Root;
@@ -119,10 +119,10 @@ void     WindSetHandles (p_WINDOW );
 CARD32   WindChildOf    (p_WINDOW , p_WINDOW candid);
 
 static inline p_WINDOW WindFind (CARD32 id) {
-	p_WINDOW wind = DrawFind(id).Window;
-	if ((DBG_XRSC_TypeError = (wind && !wind->isWind))) wind = NULL;
-	return wind;
+    p_WINDOW wind = DrawFind(id).Window;
+    if ((DBG_XRSC_TypeError = (wind && !wind->isWind))) wind = NULL;
+    return wind;
 }
 
 
-#endif ___WINDOW_H__
+#endif /* ___WINDOW_H__ */

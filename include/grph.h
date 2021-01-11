@@ -33,10 +33,10 @@ extern CONST short GRPH_Vdi;
 extern CONST short GRPH_ScreenW, GRPH_ScreenH, GRPH_Depth,
                    GRPH_muWidth, GRPH_muHeight;
 enum {
-	SCRN_Interleaved = 0,
-	SCRN_Standard    = 1,
-	SCRN_PackedPixel = 2,
-	SCRN_FalconHigh  = 3
+    SCRN_Interleaved = 0,
+    SCRN_Standard    = 1,
+    SCRN_PackedPixel = 2,
+    SCRN_FalconHigh  = 3
 };
 extern CONST short GRPH_Format;
 
@@ -50,7 +50,7 @@ void GrphError (void);
 
 #ifndef __p_xArc
 # define __p_xArc
-	struct _xArc; typedef struct _xArc * p_xArc;
+    struct _xArc; typedef struct _xArc * p_xArc;
 #endif
 void FT_Grph_ShiftArc_MSB (const p_PXY , p_xArc  arc, size_t num, short mode);
 void FT_Grph_ShiftArc_LSB (const p_PXY , p_xArc  arc, size_t num, short mode);
@@ -60,4 +60,4 @@ void FT_Grph_ShiftR2P_MSB (const p_PXY , p_GRECT rct, size_t num);
 void FT_Grph_ShiftR2P_LSB (const p_PXY , p_GRECT rct, size_t num);
 
 
-#endif __GRPH_H__
+#endif /* __GRPH_H__ */

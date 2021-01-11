@@ -16,75 +16,71 @@
 
 static inline CARD16 Swap16 (CARD16 val)
 {
-	__asm__ volatile ("
-		rol.w #8, %0;
-		"
-		: "=d"(val) // output
-		: "0"(val)  // input
-	);
-	return val;
+    __asm__ volatile (
+        "rol.w #8, %0           \n\t"
+        : "=d"(val) // output
+        : "0"(val)  // input
+    );
+    return val;
 }
 
 static inline CARD32 Swap32 (CARD32 val)
 {
-	__asm__ volatile ("
-		rol.w	#8, %0;
-		swap	%0;
-		rol.w	#8, %0;
-		"
-		: "=d"(val) // output
-		: "0"(val)  // input
-	);
-	return val;
+    __asm__ volatile (
+        "rol.w	#8, %0          \n\t"
+        "swap	%0              \n\t"
+        "rol.w	#8, %0          \n\t"
+        : "=d"(val) // output
+        : "0"(val)  // input
+    );
+    return val;
 }
 
 static inline void SwapPXY (PXY * dst, const PXY * src)
 {
-	__asm__ volatile ("
-		move.l	(%0), d0;
-		rol.w		#8, d0;
-		swap		d0;
-		rol.w		#8, d0;
-		swap		d0;
-		move.l	d0, (%1);
-		"
-		:                   // output
-		: "a"(src),"a"(dst) // input
-		: "d0"              // clobbered
-	);
+    __asm__ volatile (
+        "move.l	(%0), d0        \n\t"
+        "rol.w		#8, d0      \n\t"
+        "swap		d0          \n\t"
+        "rol.w		#8, d0      \n\t"
+        "swap		d0          \n\t"
+        "move.l	d0, (%1)        \n\t"
+        :                   // output
+        : "a"(src),"a"(dst) // input
+        : "d0"              // clobbered
+    );
 }
 
 static inline void SwapRCT (GRECT * dst, const GRECT * src)
 {
-	__asm__ volatile ("
-		movem.l	(%0), d0/d1;
-		rol.w		#8, d0;
-		swap		d0;
-		rol.w		#8, d0;
-		swap		d0;
-		rol.w		#8, d1;
-		swap		d1;
-		rol.w		#8, d1;
-		swap		d1;
-		movem.l	d0/d1, (%1);
-		"
-		:                   // output
-		: "a"(src),"a"(dst) // input
-		: "d0","d1"         // clobbered
-	);
+    __asm__ volatile (
+        "movem.l	(%0), d0/d1 \n\t"
+        "rol.w		#8, d0      \n\t"
+        "swap		d0          \n\t"
+        "rol.w		#8, d0      \n\t"
+        "swap		d0          \n\t"
+        "rol.w		#8, d1      \n\t"
+        "swap		d1          \n\t"
+        "rol.w		#8, d1      \n\t"
+        "swap		d1          \n\t"
+        "movem.l	d0/d1, (%1) \n\t"
+        :                   // output
+        : "a"(src),"a"(dst) // input
+        : "d0","d1"         // clobbered
+    );
 }
 
 
 static inline BOOL PXYinRect (const PXY * p, const GRECT * r)
 {
-	return (p->x >= r->x         &&  p->y >= r->y  &&
-	        p->x <  r->x + r->w  &&  p->y <  r->y + r->h);
+    return (p->x >= r->x         &&  p->y >= r->y  &&
+            p->x <  r->x + r->w  &&  p->y <  r->y + r->h);
 }
 
 static inline BOOL RectIntersect (const GRECT * a, const GRECT * b)
 {
-	return (a->x < b->x + b->w  &&  a->y < b->y + b->h  &&
-	        b->x < a->x + a->w  &&  b->y < a->y + a->h);
+    return (a->x < b->x + b->w  &&  a->y < b->y + b->h  &&
+            b->x < a->x + a->w  &&  b->y < a->y + a->h);
 }
 
 
@@ -98,4 +94,4 @@ static inline BOOL RectIntersect (const GRECT * a, const GRECT * b)
 #define numberof(array)   (sizeof(array) / sizeof(*array))
 
 
-#endif __TOOLS_H__
+#endif /* __TOOLS_H__ */

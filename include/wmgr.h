@@ -61,4 +61,4 @@ extern CONST short  WMGR_FocusHolder;
 
 
 # undef CONST
-#endif __WMGR_H__
+#endif /* __WMGR_H__ */

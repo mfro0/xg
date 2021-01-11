@@ -42,16 +42,16 @@ struct s_PRECT;      typedef struct s_PRECT    * p_PRECT;
 struct s_GC;         typedef struct s_GC       * p_GC;
 struct s_FONt;       typedef struct s_FONT     * p_FONT;
 struct s_FONTABLE;   typedef union  u_FONTABLE {
-	struct s_FONTABLE * p;
-	p_GC                Gc;
-	p_FONT              Font;
+    struct s_FONTABLE * p;
+    p_GC                Gc;
+    p_FONT              Font;
 } p_FONTABLE;
 struct s_PIXMAP;     typedef struct s_PIXMAP   * p_PIXMAP;
 struct s_WINDOW;     typedef struct s_WINDOW   * p_WINDOW;
 struct s_DRAWABLE;   typedef union  u_DRAWABLE {
-	struct s_DRAWABLE * p;
-	p_PIXMAP            Pixmap;
-	p_WINDOW            Window;
+    struct s_DRAWABLE * p;
+    p_PIXMAP            Pixmap;
+    p_WINDOW            Window;
 } p_DRAWABLE;
 struct s_CLIENT;     typedef struct s_CLIENT   * p_CLIENT;
 struct s_CURSOR;     typedef struct s_CURSOR   * p_CURSOR;
@@ -76,17 +76,17 @@ void WindPointerMove  (const p_PXY mouse);
 
 
 static inline void WindUpdate (onNoff) {
-	extern short wind_update (short);
-	extern short _MAIN_Wupdt;
-	if      (onNoff)      { wind_update (1); _MAIN_Wupdt++; }
-	else if (_MAIN_Wupdt) { wind_update (0); _MAIN_Wupdt--; }
+    extern short wind_update (short);
+    extern short _MAIN_Wupdt;
+    if      (onNoff)      { wind_update (1); _MAIN_Wupdt++; }
+    else if (_MAIN_Wupdt) { wind_update (0); _MAIN_Wupdt--; }
 }
 
 static inline void WindMctrl (onNoff) {
-	extern short wind_update (short);
-	extern short _MAIN_Mctrl;
-	if      (onNoff)      { wind_update (3); _MAIN_Mctrl++; }
-	else if (_MAIN_Mctrl) { wind_update (2); _MAIN_Mctrl--; }
+    extern short wind_update (short);
+    extern short _MAIN_Mctrl;
+    if      (onNoff)      { wind_update (3); _MAIN_Mctrl++; }
+    else if (_MAIN_Mctrl) { wind_update (2); _MAIN_Mctrl--; }
 }
 
 
@@ -103,4 +103,4 @@ extern const char   PATH_FontsAlias[],  PATH_LibDir[],   PATH_FontsDb[];
 
 
 # undef CONST
-#endif __MAIN_H__
+#endif /* __MAIN_H__ */

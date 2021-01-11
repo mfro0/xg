@@ -13,7 +13,7 @@
 
 
 typedef struct {
-	CARD16 r, g, b;
+    CARD16 r, g, b;
 } RGB;
 
 
@@ -25,13 +25,13 @@ CARD16          CmapRevertIdx (CARD16 idx);
 
 static inline CARD16 CmapPixelIdx (CARD32 pixel, CARD16 depth)
 {
-	if (GRPH_Depth > 8) {
-		extern CARD16 (*Cmap_PixelIdx) (CARD32 );
-		if (depth == 1) pixel =               ~pixel;
-		else            pixel = Cmap_PixelIdx (pixel);
-	}
-	return (pixel & ((1uL << depth) -1));
+    if (GRPH_Depth > 8) {
+        extern CARD16 (*Cmap_PixelIdx) (CARD32 );
+        if (depth == 1) pixel =               ~pixel;
+        else            pixel = Cmap_PixelIdx (pixel);
+    }
+    return (pixel & ((1uL << depth) -1));
 }
 
 
-#endif __COLORMAP_H__
+#endif /* __COLORMAP_H__ */

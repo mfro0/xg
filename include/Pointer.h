@@ -11,13 +11,14 @@
 #ifndef __POINTER_H__
 # define __POINTER_H__
 
+#include "X11/Xmd.h"
 
 void PntrInit (BOOL initNreset);
 
 static inline CARD16 PntrMap (int idx) {
-	extern CARD16 PNTR_Mapping[4];
-	return PNTR_Mapping[idx];
+    extern CARD16 PNTR_Mapping[4];
+    return PNTR_Mapping[idx];
 }
 
 
-#endif __POINTER_H__
+#endif /* __POINTER_H__ */

@@ -12,21 +12,21 @@
 
 
 typedef struct s_GRECT {
-	short x, y;
-	short w, h;
+    short x, y;
+    short w, h;
 } GRECT;
 #define __GRECT
 
 typedef struct s_PXY {
-	short x;
-	short y;
+    short x;
+    short y;
 } PXY;
 #define __PXY
 
 typedef struct s_PRECT {
-	PXY lu;
-	PXY rd;
+    PXY lu;
+    PXY rd;
 } PRECT;
 
 
-#endif __TYPES_H__
+#endif /* __TYPES_H__ */
