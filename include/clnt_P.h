@@ -27,4 +27,4 @@ void Clnt_EvalSelect_MSB (CLIENT *, p_xReq);
 void Clnt_EvalSelect_LSB (CLIENT *, p_xReq);
 
 
-#endif __CLNT_P_H__
+#endif /* __CLNT_P_H__ */

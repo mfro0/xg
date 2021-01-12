@@ -74,4 +74,4 @@ void       _Font_Bounds (FONTFACE * face, BOOL mono, short * offscreen, MFDB *);
 						// else if offscreen is NULL both will be ignored also.
 
 
-#endif __FONT_P_H__
+#endif /* __FONT_P_H__ */

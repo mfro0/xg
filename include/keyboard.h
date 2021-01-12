@@ -31,4 +31,4 @@ extern CONST CARD16  KYBD_Repeat;
 
 # undef CONST
 
-#endif __KEYBOARD_H__
+#endif /* __KEYBOARD_H__ */

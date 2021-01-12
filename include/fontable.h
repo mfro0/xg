@@ -15,23 +15,23 @@
 
 
 typedef struct s_FONTABLE {
-	XRSC(FONTABLE, isFont);
-	
-	struct s_FONTFACE * FontFace;
-	short               FontIndex   :16;
-	unsigned            FontEffects : 3;
-	unsigned            FontPoints  :13;
-	unsigned            FontWidth;
+    XRSC(FONTABLE, isFont);
+
+    struct s_FONTFACE * FontFace;
+    short               FontIndex   :16;
+    unsigned            FontEffects : 3;
+    unsigned            FontPoints  :13;
+    unsigned            FontWidth;
 } FONTABLE;
 
 
 void FablDelete (p_FONTABLE, p_CLIENT);
 
 static inline p_FONTABLE FablFind (CARD32 id) {
-	CLIENT   * clnt = ClntFind (id);
-	FONTABLE * fabl = (clnt ? Xrsc(FONTABLE, id, clnt->Fontables) : NULL);
-	return (p_FONTABLE)fabl;
+    CLIENT   * clnt = ClntFind (id);
+    FONTABLE * fabl = (clnt ? Xrsc(FONTABLE, id, clnt->Fontables) : NULL);
+    return (p_FONTABLE)fabl;
 }
 
 
-#endif __FONTABLE_H__
+#endif /* __FONTABLE_H__ */

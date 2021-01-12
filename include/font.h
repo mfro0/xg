@@ -15,13 +15,13 @@
 
 
 typedef struct s_FONT {
-	XRSC(FONTABLE, isFont);
-	
-	struct s_FONTFACE * FontFace;
-	short               FontIndex   :16;
-	unsigned            FontEffects : 3;
-	unsigned            FontPoints  :13;
-	unsigned            FontWidth;
+    XRSC(FONTABLE, isFont);
+
+    struct s_FONTFACE * FontFace;
+    short               FontIndex   :16;
+    unsigned            FontEffects : 3;
+    unsigned            FontPoints  :13;
+    unsigned            FontWidth;
 } FONT;
 
 
@@ -31,8 +31,8 @@ void FontDelete (p_FONT , p_CLIENT);
 BOOL FontValues (p_FONTABLE , CARD32 id);
 
 static inline void FontCopy (p_FONTABLE dst, const p_FONTABLE src) {
-	long * d = (long*)&dst.p->FontFace, * s = (long*)&src.p->FontFace;
-	*(d++) = *(s++); *(d) = *(s); dst.p->FontWidth = src.p->FontWidth;
+    long * d = (long*)&dst.p->FontFace, * s = (long*)&src.p->FontFace;
+    *(d++) = *(s++); *(d) = *(s); dst.p->FontWidth = src.p->FontWidth;
 }
 
 short * FontTrans_C (short * arr, const char  * str, int len,
@@ -41,4 +41,4 @@ short * FontTrans_W (short * arr, const short * str, int len,
                      const struct s_FONTFACE * face);
 
 
-#endif __FONT_H__
+#endif /* __FONT_H__ */

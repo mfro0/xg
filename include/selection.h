@@ -16,4 +16,4 @@ void SlctRemove (p_CLIENT clnt);
 void SlctClear  (p_WINDOW wind);
 
 
-#endif __SELECTION_H__
+#endif /* __SELECTION_H__ */
