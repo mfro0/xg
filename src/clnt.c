@@ -624,10 +624,9 @@ RQ_SetCloseDownMode (CLIENT * clnt, xSetCloseDownModeReq * q)
 
 
 //------------------------------------------------------------------------------
-void
-RQ_AllowEvents (CLIENT * clnt, xAllowEventsReq * q)
+void RQ_AllowEvents (CLIENT * clnt, xAllowEventsReq * q)
 {
-    PRINT (- X_AllowEvents," T:%lX mode=%i", q->time, (int)q->mode);
+    PRINT (- X_AllowEvents," T:%lX mode=%i", q->time, (int) q->mode);
 }
 
 //------------------------------------------------------------------------------
