@@ -15,8 +15,8 @@
 #include "tools.h"
 #include "event.h"
 
+#include <string.h>
 #include <stdlib.h>
-
 
 #define _Prop_Find(pool, name) \
                   (pool ? Xrsc(PROPERTY, name, pool->Pool) : NULL)
