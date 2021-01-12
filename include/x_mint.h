@@ -20,22 +20,21 @@
 # undef Fwrite
 
 
-static inline long Finstat (short fd)
+static inline long Finstat(short fd)
 {
     register long rtn;
 
-    __asm__ volatile ("
-        move.w	%1, -(sp);
-        move.w	#0x105, -(sp);
-        trap		#1;
-        addq		#4, sp;
-        moveq.l	#1, d1;
-        add.l		d0, d1;
-        bvc		9f;
-        ext.l		d0;
-        9:
-        move.l	d0, %0
-        "
+    __asm__ volatile (
+        "move.w	%1, -(sp)       \n\t"
+        "move.w	#0x105, -(sp)   \n\t"
+        "trap		#1          \n\t"
+        "addq		#4, sp      \n\t"
+        "moveq.l	#1, d1      \n\t"
+        "add.l		d0, d1      \n\t"
+        "bvc		9f          \n\t"
+        "ext.l		d0          \n\t"
+        "9:                     \n\t"
+        "move.l	d0, %0          \n\t"
         : "=d"(rtn)                      // output
         : "g"(fd)                        // input
         : "d0","d1","d2", "a0","a1","a2" // clobbered
@@ -43,22 +42,21 @@ static inline long Finstat (short fd)
     return rtn;
 }
 
-static inline long Foutstat (short fd)
+static inline long Foutstat(short fd)
 {
     register long rtn;
 
-    __asm__ volatile ("
-        move.w	%1, -(sp);
-        move.w	#0x106, -(sp);
-        trap		#1;
-        addq		#4, sp;
-        moveq.l	#1, d1;
-        add.l		d0, d1;
-        bvc		9f;
-        ext.l		d0;
-        9:
-        move.l	d0, %0
-        "
+    __asm__ volatile (
+        "move.w	%1, -(sp)       \n\t"
+        "move.w	#0x106, -(sp)   \n\t"
+        "trap		#1          \n\t"
+        "addq		#4, sp      \n\t"
+        "moveq.l	#1, d1      \n\t"
+        "add.l		d0, d1      \n\t"
+        "bvc		9f          \n\t"
+        "ext.l		d0          \n\t"
+        "9:                     \n\t"
+        "move.l	d0, %0          \n\t"
         : "=d"(rtn)                      // output
         : "g"(fd)                        // input
         : "d0","d1","d2", "a0","a1","a2" // clobbered
@@ -67,19 +65,18 @@ static inline long Foutstat (short fd)
 }
 
 
-static inline long Fread (short fd, long count, void * buf)
+static inline long Fread(short fd, long count, void * buf)
 {
     register long rtn;
 
-    __asm__ volatile ("
-        move.l	%3, -(sp);
-        move.l	%2, -(sp);
-        move.w	%1, -(sp);
-        move.w	#0x3F, -(sp);
-        trap		#1;
-        adda.w	#12, sp;
-        move.l	d0, %0
-        "
+    __asm__ volatile (
+        "move.l	%3, -(sp)       \n\t"
+        "move.l	%2, -(sp)       \n\t"
+        "move.w	%1, -(sp)       \n\t"
+        "move.w	#0x3F, -(sp)    \n\t"
+        "trap		#1          \n\t"
+        "adda.w	#12, sp         \n\t"
+        "move.l	d0, %0          \n\t"
         : "=d"(rtn)                      // outputs
         : "g"(fd),"g"(count),"g"(buf)    // inputs
         : "d0","d1","d2", "a0","a1","a2" // clobbered regs
@@ -87,19 +84,18 @@ static inline long Fread (short fd, long count, void * buf)
     return rtn;
 }
 
-static inline long Fwrite (short fd, long count, void * buf)
+static inline long Fwrite(short fd, long count, void * buf)
 {
     register long rtn;
 
-    __asm__ volatile ("
-        move.l	%3, -(sp);
-        move.l	%2, -(sp);
-        move.w	%1, -(sp);
-        move.w	#0x40, -(sp);
-        trap		#1;
-        adda.w	#12, sp;
-        move.l	d0, %0
-        "
+    __asm__ volatile (
+        "move.l	%3, -(sp)       \n\t"
+        "move.l	%2, -(sp)       \n\t"
+        "move.w	%1, -(sp)       \n\t"
+        "move.w	#0x40, -(sp)    \n\t"
+        "trap		#1          \n\t"
+        "adda.w	#12, sp         \n\t"
+        "move.l	d0, %0          \n\t"
         : "=d"(rtn)                      // outputs
         : "g"(fd),"g"(count),"g"(buf)    // inputs
         : "d0","d1","d2", "a0","a1","a2" // clobbered regs
