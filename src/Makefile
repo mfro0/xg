@@ -1,5 +1,5 @@
 WARN    = -Wall -Wpointer-arith -Wwrite-strings -Wmissing-prototypes -Wshadow \
-	  -Werror #-Wcast-qual
+	  #-Werror #-Wcast-qual
 COPTS	= -D_TRACE -g -O2 -fstrength-reduce #-DNODEBUG
 CFLAGS  = -funsigned-char -fomit-frame-pointer \
 	  -I. -I../include -I/usr/GEM/include \
@@ -12,13 +12,14 @@ CC  = m68k-atari-mint-gcc
 CXX = m68k-atari-minit-g++
 LD  = m68k-atari-mint-gcc -g
 AR  = m68k-atari-mint-ar rs
+STACK = m68k-atari-mint-stack
 
 PRG    = X.app
 OBJDIR = ../obj
 LIBS   = gem iio
 DEPEND = $(OBJDIR)/depends
 
-LDFLAGS = -v $(COPTS) -L/usr/GEM/lib
+LDFLAGS = $(COPTS) -Wl,-Map -Wl,mapfile -L/usr/GEM/lib
 
 
 $(OBJDIR)/%.o: %.c ; rm -f $(PRG) ; $(CC) $(CFLAGS) -D_$(<:.c=)_ -c $< -o $@
@@ -43,7 +44,7 @@ $(PRG): $(OBJDIR) $(OBJ) Makefile config.c ../include/version
 	       -DBUILD=\"`cat -s $(OBJDIR)/build`\" \
 	       -o $(OBJDIR)/config.o
 	$(LD) $(LDFLAGS) -o $@ $(OBJ) $(OBJDIR)/config.o $(LIBS:%=-l%)
-	stack -S 128k $@
+	$(STACK) -S 128k $@
 
 
 $(OBJDIR):

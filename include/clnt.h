@@ -94,7 +94,7 @@ extern CONST CARD16   CLNT_BaseNum;
 
 
 static inline CLIENT * ClntFind (CARD32 id) {
-    extern XRSCPOOL(CLIENT, CLNT_Pool,0);
+    XRSCPOOL(CLIENT, CLNT_Pool,0);
     return Xrsc(CLIENT, RID_Base(id), CLNT_Pool);
 }
 
@@ -115,14 +115,14 @@ void *  ClntOutBuffer (O_BUFF * buf, size_t need, size_t copy_n, BOOL refuse);
 
 
 #define X_   0
-#define PRINT( req, frm, args...)   ClntPrint (clnt, X_##req, frm, ## args)
+#define PRINT(req, frm, ...)   // ClntPrint (clnt, X_##req, frm, __VA_ARGS__)
 
 #ifndef NODEBUG
-# define Bad( err, val, req, frm, args...) \
-    ClntError (clnt, Bad##err, val +0, X_##req, "_" frm, ## args)
+# define Bad( err, val, req, frm, ...) \
+    //ClntError (clnt, Bad##err, val +0, X_##req, "_" frm, __VA_ARGS__)
 #else
 # define Bad( err, val, req, frm, args...) \
-    clnt->Fnct->error (clnt, Bad##err, X_##req,0, val +0)
+    //clnt->Fnct->error (clnt, Bad##err, X_##req,0, val +0)
 #endif
 
 #ifdef TRACE

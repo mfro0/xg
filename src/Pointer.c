@@ -132,7 +132,7 @@ RQ_ChangePointerControl (CLIENT * clnt, xChangePointerControlReq * q)
                    (q->accelNum < -1 ? "numerator" : "denominator"));
 
     } else {
-        PRINT (X_ChangePointerControl,": %s = %i/%i, %s = %i",
+        PRINT (ChangePointerControl,": %s = %i/%i, %s = %i",
                (q->doAccel ? "accel" : "(accel)"), q->accelNum, q->accelDenum,
                (q->doThresh ? "treshold" : "(treshold)"), q->threshold);
     }
