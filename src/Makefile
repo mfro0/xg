@@ -1,9 +1,9 @@
 WARN    = -Wall -Wpointer-arith -Wwrite-strings -Wmissing-prototypes -Wshadow \
 	  -Werror #-Wcast-qual
-CCOPTS  = -D_TRACE -g -O2 -fstrength-reduce #-DNODEBUG
-CCFLAGS = -funsigned-char -fomit-frame-pointer -m68030 \
+COPTS	= -D_TRACE -g -O2 -fstrength-reduce #-DNODEBUG
+CFLAGS  = -funsigned-char -fomit-frame-pointer \
 	  -I. -I../include -I/usr/GEM/include \
-	  $(CCOPTS) $(WARN)
+	  $(COPTS) $(WARN)
 
 #SHELL  = /bin/ash
 #TMPDIR = /ram/tmp
@@ -15,13 +15,13 @@ AR  = m68k-atari-mint-ar rs
 
 PRG    = X.app
 OBJDIR = ../obj
-LIBS   = gem socket iio
+LIBS   = gem iio
 DEPEND = $(OBJDIR)/depends
 
-LDFLAGS = -v $(CCOPTS) -L/usr/GEM/lib
+LDFLAGS = -v $(COPTS) -L/usr/GEM/lib
 
 
-$(OBJDIR)/%.o: %.c ; rm -f $(PRG) ; $(CC) $(CCFLAGS) -D_$(<:.c=)_ -c $< -o $@
+$(OBJDIR)/%.o: %.c ; rm -f $(PRG) ; $(CC) $(CFLAGS) -D_$(<:.c=)_ -c $< -o $@
 
 
 ALL: $(PRG)
@@ -38,7 +38,7 @@ OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
 
 $(PRG): $(OBJDIR) $(OBJ) Makefile config.c ../include/version
 	@expr "0`cat -s $(OBJDIR)/build`" + 1 > $(OBJDIR)/build
-	@$(CC) $(CCFLAGS) -c config.c \
+	@$(CC) $(CFLAGS) -c config.c \
 	       -DVERSION=\"`cat -s ../include/version`\" \
 	       -DBUILD=\"`cat -s $(OBJDIR)/build`\" \
 	       -o $(OBJDIR)/config.o
@@ -67,7 +67,7 @@ __udpnd: ; rm -f $(DEPEND)
 
 $(DPND):
 	@echo -n " <$(@:%.d=%)> "
-	@$(CC) -pipe $(CCFLAGS: $(WARN)=) -M $(@:%.d=%.c) -D_$(@:.d=)_ \
+	@$(CC) -pipe $(CFLAGS: $(WARN)=) -M $(@:%.d=%.c) -D_$(@:.d=)_ \
 	 | sed "s,^\(.*\)\.o:,$(OBJDIR)/\1.o:," >> $(DEPEND)
 
 -include $(OBJDIR)/depends
