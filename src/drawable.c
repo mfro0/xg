@@ -18,7 +18,7 @@
 #include "grph.h"
 #include "x_gem.h"
 #include "gemx.h"
-
+#include <alloca.h>
 #include <stdio.h>
 
 #include <X11/X.h>
