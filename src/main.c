@@ -144,7 +144,6 @@ main (int argc, char * argv[])
             clock_t kb_tmout = 0x7FFFFFFF;
 
             WmgrActivate (xTrue); //(_app == 0);
-
             if (argc > 1  &&  argv[1] && *argv[1]) {
                 int i;
                 if (!access (argv[1], X_OK)) {
@@ -163,6 +162,8 @@ main (int argc, char * argv[])
                              | (*kb_shift & K_ALTGR ? 0x20 : 0);
                 short  chng;
                 MAIN_TimeStamp = (clock() * (1000 / CLOCKS_PER_SEC) - t_start);
+
+                printf("run\r\n");
 
                 if (event & MU_KEYBD) {
                     if (meta == (K_CTRL|K_ALT)  &&  ev_o.emo_kreturn == 0x0E08) {

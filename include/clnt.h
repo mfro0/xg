@@ -89,8 +89,8 @@ typedef struct {
 } REQUEST;
 extern const REQUEST  RequestTable[/*FirstExtensionError*/];
 
-extern CONST CLIENT * CLNT_Base;
-extern CONST CARD16   CLNT_BaseNum;
+extern CLIENT *CLNT_Base;
+extern CONST CARD16 CLNT_BaseNum;
 
 
 static inline CLIENT * ClntFind (CARD32 id) {

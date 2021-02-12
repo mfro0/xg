@@ -1,7 +1,7 @@
 WARN    = -Wall -Wpointer-arith -Wwrite-strings -Wmissing-prototypes -Wshadow \
 	  #-Werror #-Wcast-qual
-COPTS	= -D_TRACE -g -O2 -fstrength-reduce #-DNODEBUG
-CFLAGS  = -funsigned-char -fomit-frame-pointer \
+COPTS	= -D_TRACE -g -O2 #-DNODEBUG
+CFLAGS  = -fno-strict-aliasing -funsigned-char -fomit-frame-pointer \
 	  -I. -I../include -I/usr/GEM/include \
 	  $(COPTS) $(WARN)
 
@@ -56,7 +56,7 @@ $(OBJDIR):
 	@echo "*** Make $(PRG) ***"
 
 
-clean: 
+clean:
 	rm -f $(OBJDIR)/*.o *.% *.[bB][aA][kK] ../include/*.%
 
 
